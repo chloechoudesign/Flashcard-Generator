@@ -1,4 +1,5 @@
 module.exports = ClozeCard;
+var inquirer = require('inquirer');
 
 function ClozeCard(text, cloze){
  this.cloze = cloze;
@@ -33,6 +34,26 @@ firstPresidentCloze.printCloze();
 firstPresidentCloze.printText();
 firstPresidentCloze.printPartial();
 
+
+//Create Cloze Questions with inquirer
+inquirer.prompt([
+  {
+    name: 'text',
+    message: 'Question: '
+  }, {
+    name: 'cloze',
+    message: 'Answer: '
+  }, 
+]).then(function(answers){
+
+  var newClozeQuestion = new ClozeCard (answers.text, answers.cloze);
+
+  // console.log(newQuestion);
+  
+  newClozeQuestion.printText();
+  newClozeQuestion.printCloze();
+  newClozeQuestion.printPartial();
+})
 
 
 
